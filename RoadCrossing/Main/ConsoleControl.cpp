@@ -23,7 +23,7 @@ void ConsoleControl::LoadLevel()
 	cPlayer player;
 	while (player.Is_Alive() == true)
 	{
-		cGame game(30+player.Level()*2, 5+player.Level()*1);
+		cGame game(30, 5+player.Level()*1);
 		player.setStartPos(game);
 		while (game.Is_Exit() == false)
 		{
@@ -37,3 +37,9 @@ void ConsoleControl::Reset()
 	system("cls");
 	LoadLevel();
 }
+/*void GotoXY(int x, int y) {
+	COORD coord;
+	coord.X = x;
+	coord.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}*/

@@ -1,3 +1,4 @@
+
 #pragma once
 #include <iostream>
 #include <vector>
@@ -5,6 +6,8 @@
 #include <string>
 #include "CPlayer.h"
 #include "CVehicle.h"
+#include "CAnimal.h"
+#include "LaneObj.h"
 #include "ConsoleControl.h"
 using namespace std;
 class cGame
@@ -15,10 +18,10 @@ private:
 	int numberOfLanes;
 	int width;
 	//cPlayer * player;
-	vector<cLane*> map;
+	vector<LaneObj*> map;
 	friend class cPlayer;
 public:
-	cGame(int w, int h );
+	cGame(int w, int h);
 	~cGame();
 	void Draw(cPlayer player);
 	void Input(cPlayer &player);
@@ -33,4 +36,3 @@ public:
 	bool SaveLocal(string path);
 	void Preset();
 };
-

@@ -1,16 +1,11 @@
 #pragma once
-#include <deque>
+#include "LaneObj.h"
 using namespace std;
-class cLane
+class cLane:public LaneObj
 {
-private:
-	deque<bool> cars;
-	bool right;
+
 public:
 	cLane(int width);
-	void Move();
-	bool CheckPos(int pos) { return cars[pos]; }
-	void Preset(int pos) { cars[pos] = false; }
-	void ChangeDirection() { right = !right; }
+	~cLane() {};
 };
 

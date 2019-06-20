@@ -151,17 +151,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAnimal.h" />
     <ClInclude Include="CGame.h" />
     <ClInclude Include="ConsoleControl.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CVehicle.h" />
+    <ClInclude Include="LaneObj.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAnimal.cpp" />
     <ClCompile Include="CGame.cpp" />
     <ClCompile Include="ConsoleControl.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CVehicle.cpp" />
+    <ClCompile Include="LaneObj.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

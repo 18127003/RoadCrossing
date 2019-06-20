@@ -1,3 +1,4 @@
+
 #include "pch.h"
 #include "CGame.h"
 
@@ -8,7 +9,19 @@ cGame::cGame(int w = 20, int h = 10)
 	width = w;
 	quit = false;
 	for (int i = 0; i < numberOfLanes; i++)
-		map.push_back(new cLane(width));
+	{
+		if (rand() % 2 == 1)
+		{
+			map.push_back(new cLane(width));
+			map[i]->IsCar(true);
+		}
+		else
+		{
+			map.push_back(new CAnimal(width));
+			map[i]->IsCar(false);
+		}
+	}
+		
 	//player = new cPlayer(width);
 }
 void cGame::Preset()
@@ -31,8 +44,8 @@ void cGame::Draw(cPlayer player)
 			if (i == 0 && (j == 0 || j == width - 1)) cout << "S";
 			if (i == numberOfLanes - 1 && (j == 0 || j == width - 1)) cout << "F";
 			if (map[i]->CheckPos(j) && i != 0 && i != numberOfLanes - 1)
-				cout << "#";
-			else if (player.Pos(j,i)==true)
+				map[i]->Draw();
+			else if (player.Pos(j, i) == true)
 				cout << "V";
 			else
 				cout << " ";
@@ -59,20 +72,20 @@ void cGame::Input(cPlayer &player)
 			quit = true;
 			player.SetAlive(false);
 		}
-		
+
 	}
 }
 void cGame::Logic(cPlayer &player)
 {
 	for (int i = 1; i < numberOfLanes - 1; i++)
 	{
-		if (rand() % 50 > 23-player.Level()&&rand()%50<26+player.Level())    //speed
+		if (rand() % 50 > 23 - player.Level() && rand() % 50 < 26 + player.Level())    //speed
 			map[i]->Move();
 		if (map[i]->CheckPos(player.x) && player.y == i)
 		{
 			quit = true;
 			player.SetAlive(false);
-		}		
+		}
 	}
 	if (player.y == numberOfLanes - 1)
 	{
@@ -95,7 +108,7 @@ void cGame::Reload(cPlayer &player)
 void cGame::Run(cPlayer &player)
 {
 	Preset();
-	thread t(&cGame::Reload, this,ref(player));
+	thread t(&cGame::Reload, this, ref(player));
 	while (!quit)
 	{
 		Input(player);
@@ -111,7 +124,7 @@ cGame::~cGame()
 	//delete player;
 	for (size_t i = 0; i < map.size(); i++)
 	{
-		cLane * current = map.back();
+		LaneObj * current = map.back();
 		map.pop_back();
 		delete current;
 	}
